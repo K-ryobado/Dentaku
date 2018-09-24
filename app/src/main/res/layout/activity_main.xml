@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3891518799622736/1151660728"></com.google.android.gms.ads.AdView>
+    <!-- Sample Banner ID:ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/1151660728-->
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_below="@+id/adView"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="left"
+        android:maxLength="20"
+        android:text="0"
+        android:textColor="#fefcfc"
+        android:textSize="25dp"
+        android:layout_toLeftOf="@+id/button_history"/>
+
+    <ImageButton
+        android:id="@+id/button_history"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_color"
+        android:onClick="onclick_history"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_expand_more_black_24dp"
+        android:layout_below="@+id/adView"
+        android:layout_alignParentRight="true" />
+
+    <ImageButton
+        android:background="@drawable/button_color"
+        android:onClick="onclick_backspace"
+        android:id="@+id/backspace"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_above="@+id/ten_key"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv1"
+        android:layout_marginRight="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_backspace_black_24dp" />
+
+    <TextView
+        android:textSize="10dp"
+        android:text="  "
+        android:layout_below="@+id/tv1"
+        android:id="@+id/tv_space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/backspace"/>
+
+    <TextView
+        android:id="@+id/eT1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:ellipsize="none"
+        android:gravity="right"
+        android:maxLength="12"
+        android:singleLine="true"
+        android:text="0"
+        android:layout_toLeftOf="@+id/tv_space"
+        android:textColor="#fefcfc"
+        android:textSize="45dp"
+        app:fontFamily="serif-monospace" />
+
+    <include
+        android:id="@+id/ten_key"
+        layout="@layout/ten_key"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/adView2"
+        android:layout_below="@id/eT1" />
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/adView2"
+        android:layout_below="@id/adView">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/history"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#e6000000">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/button_close">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_17"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_17"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_18"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_tv1_19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:id="@+id/tv_history_eT1_19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textColor="#fffdfd"
+                            android:textSize="25dp" />
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+                <Button
+                    android:onClick="onclick_history_clear"
+                    android:textSize="20dp"
+                    android:id="@+id/history_clear"
+                    android:textColor="@drawable/text_color"
+                    android:text="clear"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:background="@drawable/button_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/button_close"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button_color"
+                    android:onClick="onclick_close"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_close_black_24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3891518799622736/4517614453"></com.google.android.gms.ads.AdView>
+    <!-- Sample Banner ID: ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/4517614453-->
+</RelativeLayout>
