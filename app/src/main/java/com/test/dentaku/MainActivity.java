@@ -1,9 +1,14 @@
 package com.test.dentaku;
 
 import android.app.Activity;
-import android.app.Application;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -216,6 +221,16 @@ public class MainActivity extends Activity {
         count_AdView = 0;
 
         oncreate = 1;
+
+
+    }
+
+    //アクティビティが前面に来るたびに処理
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //アプリを開いた回数に応じてレビューを表示
+        Preference();
     }
 
     /* onWindowFocusChanged() はフォーカスが変わった時に呼ばれるので
@@ -229,6 +244,8 @@ public class MainActivity extends Activity {
             setTextSizeByInch(layout_id);
             oncreate = 2;
         }
+
+
     }
 
     boolean recentOperator; // 最近押されたキーが"="ならtrue
@@ -1065,6 +1082,46 @@ public class MainActivity extends Activity {
                 target_button.setLayoutParams(lp);
 
             }
+        }
+    }
+
+    SharedPreferences sp;
+
+    public void Preference() {
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int s = sp.getInt("START", 0);
+        sp.edit().putInt("START", (s + 1)).commit();
+        s=sp.getInt("START", 0);
+
+        if(s==100){
+            s=1;
+        }
+        
+        //5回に1回表示
+        if (s % 5 == 0) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(
+                    MainActivity.this);
+            dialog.setTitle("ありがとうございます!!");
+            dialog.setMessage("もしよければこのアプリのレビューを書いて頂けないでしょうか?");
+            dialog.setPositiveButton("書く",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO 自動生成されたメソッド・スタブ
+                            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.gmail.team369z");
+                            Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(i);
+                        }
+                    });
+            dialog.setNegativeButton("また後で",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO 自動生成されたメソッド・スタブ
+                        }
+                    });
+
+            dialog.show();
         }
     }
 }
