@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
         //インタースティシャル
         //sample ID:ca-app-pub-3940256099942544/1033173712  Real ID:ca-app-pub-3891518799622736/2675857664
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3891518799622736/2675857664");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         mInterstitialAd.setAdListener(new AdListener() {
@@ -484,7 +484,7 @@ public class MainActivity extends Activity {
                             value = 0;
                             value2 = 0;
                         }
-                        /********             ×、÷の処理               *********/
+                        /********         ↑    ×、÷の処理               *********/
 
                         index = 0;
                         index2 = 0;
@@ -494,7 +494,7 @@ public class MainActivity extends Activity {
                         value2 = 0;
 
 
-                        /********             +、-の処理               *********/
+                        /********          ↓   +、-の処理               *********/
 
                         while (sb.toString().contains(add) || sb.toString().contains(subtract)) {//＋or―が含まれている限り繰り返す
                             String[] string_array = {add, subtract};
@@ -556,7 +556,7 @@ public class MainActivity extends Activity {
                             value = 0;
                             value2 = 0;
                         }
-                        /********             +、-の処理               *********/
+                        /********             +、-の処理      ↑         *********/
 
                         eT1.setText(sb.toString());
                     }
@@ -1090,38 +1090,52 @@ public class MainActivity extends Activity {
     public void Preference() {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         int s = sp.getInt("START", 0);
-        sp.edit().putInt("START", (s + 1)).commit();
-        s=sp.getInt("START", 0);
 
-        if(s==100){
-            s=1;
+
+
+        if (s > 21) {
+            s = 0;
         }
-        
+
+        if (s < 21) {
+            sp.edit().putInt("START", (s + 1)).commit();
+            s = sp.getInt("START", 0);
+            Toast.makeText(this, String.valueOf(s), Toast.LENGTH_SHORT).show();
+        }
+
+
         //5回に1回表示
-        if (s % 5 == 0) {
+        //if (s == 5 || s == 20) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(
                     MainActivity.this);
-            dialog.setTitle("ありがとうございます!!");
-            dialog.setMessage("もしよければこのアプリのレビューを書いて頂けないでしょうか?");
-            dialog.setPositiveButton("書く",
+            dialog.setTitle(R.string.dialog_Title);
+            dialog.setMessage(R.string.dialog_Message);
+            dialog.setPositiveButton(R.string.dialog_PositiveButton,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // TODO 自動生成されたメソッド・スタブ
-                            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.gmail.team369z");
+                            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
                             Intent i = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(i);
                         }
                     });
-            dialog.setNegativeButton("また後で",
+            dialog.setNeutralButton(R.string.dialog_NeutralButton,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // TODO 自動生成されたメソッド・スタブ
+                        }
+                    });
+            dialog.setNegativeButton(R.string.dialog_NegativeButton,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
+                            Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(i);
                         }
                     });
 
             dialog.show();
-        }
+        //}
     }
 }

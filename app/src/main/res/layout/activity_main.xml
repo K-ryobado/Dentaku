@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3891518799622736/1151660728"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
     <!-- Sample Banner ID:ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/1151660728-->
 
 
@@ -453,6 +453,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3891518799622736/4517614453"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
     <!-- Sample Banner ID: ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/4517614453-->
 </RelativeLayout>
