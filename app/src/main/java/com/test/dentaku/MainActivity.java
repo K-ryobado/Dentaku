@@ -33,22 +33,14 @@ import com.google.android.gms.ads.AdView;
 import static java.lang.String.valueOf;
 
 public class MainActivity extends Activity {
-    private AdView mAdView;
-    private AdView mAdView2;
+    private AdView mAdView, mAdView2;
 
     private InterstitialAd mInterstitialAd;//インタースティシャル
 
-    TextView tv1;
-    TextView eT1;
-    Button button;
-    Button button_puma;
-    Button button_dot;
-    int n;
-    int count_AdView;
-    int count_history;
-    int oncreate;
-    char str;
-    char str2;
+    TextView tv1, eT1;
+    Button button, button_puma, button_dot;
+    int n, count_AdView, count_history, oncreate;
+    char str, str2;
     String string;
     boolean bool;
 
@@ -60,9 +52,7 @@ public class MainActivity extends Activity {
     int layout_id;
     RelativeLayout relative;
     ConstraintLayout history;
-    ImageButton button_close;
-    ImageButton button_history;
-    ImageButton backspace;
+    ImageButton button_close, button_history, backspace;
     Button history_clear;
 
     TextView tv_history_tv1_0;
@@ -244,16 +234,13 @@ public class MainActivity extends Activity {
             setTextSizeByInch(layout_id);
             oncreate = 2;
         }
-
-
     }
 
     boolean recentOperator; // 最近押されたキーが"="ならtrue
     int nowOperator; // 今押された計算キー
     boolean isOperatorKeyPushed;    // 最近押されたキーが計算キーならtrue
 
-    double value;// 計算用数値1
-    double value2;// 計算用数値2
+    double value, value2;// 計算用数値2
 
     int index, index2, index3, index4;
 
@@ -667,6 +654,12 @@ public class MainActivity extends Activity {
                                 tv_history_eT1_19.setText(sb_et1);
                                 break;
                         }
+                        /*
+                        if (count_history==19){
+
+                            Toast.makeText(this, String.valueOf(count_history), Toast.LENGTH_SHORT).show();
+                        }
+                        */
                         if (count_history < 19) {
                             count_history++;
                         }
@@ -1086,18 +1079,17 @@ public class MainActivity extends Activity {
     }
 
     SharedPreferences sp;
+    boolean k ;
 
     public void Preference() {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         int s = sp.getInt("START", 0);
 
-
-
-        if (s > 21) {
+        if (s > 31) {
             s = 0;
         }
 
-        if (s < 21) {
+        if (s < 31) {
             sp.edit().putInt("START", (s + 1)).commit();
             s = sp.getInt("START", 0);
             Toast.makeText(this, String.valueOf(s), Toast.LENGTH_SHORT).show();
@@ -1105,37 +1097,39 @@ public class MainActivity extends Activity {
 
 
         //5回に1回表示
-        //if (s == 5 || s == 20) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(
-                    MainActivity.this);
-            dialog.setTitle(R.string.dialog_Title);
-            dialog.setMessage(R.string.dialog_Message);
-            dialog.setPositiveButton(R.string.dialog_PositiveButton,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
-                            Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(i);
-                        }
-                    });
-            dialog.setNeutralButton(R.string.dialog_NeutralButton,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-            dialog.setNegativeButton(R.string.dialog_NegativeButton,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
-                            Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(i);
-                        }
-                    });
+        //if ((s == 10 || s == 30) && k==true) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(
+                MainActivity.this);
+        dialog.setTitle(R.string.dialog_Title);
+        dialog.setMessage(R.string.dialog_Message);
+        dialog.setPositiveButton(R.string.dialog_PositiveButton,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
+                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(i);
+                    }
+                });
+        dialog.setNegativeButton(R.string.dialog_NeutralButton,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        dialog.setNeutralButton(R.string.dialog_NegativeButton,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
+                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(i);
 
-            dialog.show();
+                        k= true;
+                    }
+                });
+
+        dialog.show();
         //}
     }
 }
