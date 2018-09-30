@@ -33,7 +33,7 @@ import com.google.android.gms.ads.AdView;
 import static java.lang.String.valueOf;
 
 public class MainActivity extends Activity {
-    private AdView mAdView, mAdView2;
+    private AdView mAdView;
 
     private InterstitialAd mInterstitialAd;//インタースティシャル
 
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
     RelativeLayout relative;
     ConstraintLayout history;
     ImageButton button_close, button_history, backspace;
-    Button history_clear;
+    Button history_clear,request;
 
     TextView tv_history_tv1_0;
     TextView tv_history_tv1_1;
@@ -121,12 +121,9 @@ public class MainActivity extends Activity {
         });
 
         mAdView = findViewById(R.id.adView);
-        mAdView2 = findViewById(R.id.adView2);
-
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
         mAdView.loadAd(adRequest);
-        mAdView2.loadAd(adRequest);
 
         /*縦画面固定*/
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -185,6 +182,7 @@ public class MainActivity extends Activity {
         button_history = findViewById(R.id.button_history);
         backspace = findViewById(R.id.backspace);
         history_clear = findViewById(R.id.history_clear);
+        request = findViewById(R.id.request);
 
         findViewById(R.id.button_1).setOnClickListener(buttonNumberListener);
         findViewById(R.id.button_2).setOnClickListener(buttonNumberListener);
@@ -219,6 +217,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
         //アプリを開いた回数に応じてレビューを表示
         Preference();
     }
@@ -654,12 +653,7 @@ public class MainActivity extends Activity {
                                 tv_history_eT1_19.setText(sb_et1);
                                 break;
                         }
-                        /*
-                        if (count_history==19){
 
-                            Toast.makeText(this, String.valueOf(count_history), Toast.LENGTH_SHORT).show();
-                        }
-                        */
                         if (count_history < 19) {
                             count_history++;
                         }
@@ -670,6 +664,7 @@ public class MainActivity extends Activity {
                     /************************計算履歴の表示*************************************/
 
                     recentOperator = true;//最近押されたキーが"="であることを記憶
+
                 }
                 isOperatorKeyPushed = true;//最近押されたキーがk計算キーであることを記憶
             } catch (Exception e) { //全ての例外に対応
@@ -1078,6 +1073,12 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void onclick_request(View v){
+        Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
+        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(i);
+    }
+
     SharedPreferences sp;
     boolean k ;
 
@@ -1096,8 +1097,8 @@ public class MainActivity extends Activity {
         }
 
 
-        //5回に1回表示
-        //if ((s == 10 || s == 30) && k==true) {
+        //10回目と30回目に表示
+        if ((s == 10 || s == 30) && k==false) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(
                 MainActivity.this);
         dialog.setTitle(R.string.dialog_Title);
@@ -1109,6 +1110,7 @@ public class MainActivity extends Activity {
                         Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
+                        k= true;
                     }
                 });
         dialog.setNegativeButton(R.string.dialog_NeutralButton,
@@ -1124,12 +1126,10 @@ public class MainActivity extends Activity {
                         Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
                         Intent i = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(i);
-
-                        k= true;
                     }
                 });
 
         dialog.show();
-        //}
+        }
     }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/relative"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#0d0c0c"
     tools:context=".MainActivity">
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -27,7 +27,7 @@
         android:gravity="left"
         android:maxLength="20"
         android:text="0"
-        android:textColor="#fefcfc"
+        android:textColor="#f7f6f6"
         android:textSize="25dp"
         android:layout_toLeftOf="@+id/button_history"/>
 
@@ -75,23 +75,30 @@
         android:singleLine="true"
         android:text="0"
         android:layout_toLeftOf="@+id/tv_space"
-        android:textColor="#fefcfc"
+        android:textColor="#f1eded"
         android:textSize="45dp"
         app:fontFamily="serif-monospace" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f7f6f6"
+        android:layout_below="@id/eT1"/>
 
     <include
         android:id="@+id/ten_key"
         layout="@layout/ten_key"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/adView2"
-        android:layout_below="@id/eT1" />
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/line" />
 
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/adView2"
+        android:layout_alignParentBottom="true"
         android:layout_below="@id/adView">
 
         <android.support.constraint.ConstraintLayout
@@ -431,6 +438,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+                <Button
+                    android:onClick="onclick_request"
+                    android:textSize="20dp"
+                    android:id="@+id/request"
+                    android:textColor="@drawable/text_color3"
+                    android:text="request"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/history_clear"
+                    app:layout_constraintRight_toLeftOf="@+id/button_close"
+                    android:background="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
                 <ImageButton
                     android:id="@+id/button_close"
                     android:layout_width="50dp"
@@ -445,14 +465,4 @@
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
     </FrameLayout>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
-    <!-- Sample Banner ID: ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/4517614453-->
 </RelativeLayout>

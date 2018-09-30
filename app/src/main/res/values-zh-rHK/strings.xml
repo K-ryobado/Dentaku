@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="dialog_Title">レビューにご協力お願いします</string>
-    <string name="dialog_Message">もしよければ励ましのレビュー・ご要望をお寄せください。</string>
-    <string name="dialog_PositiveButton">レビューする</string>
-    <string name="dialog_NeutralButton">いいえ</string>
-    <string name="dialog_NegativeButton">要望</string>
+    <string name="dialog_Title">請幫助我哋讀書</string>
+    <string name="dialog_Message">如果你想評論嘅鼓勵同意見請。</string>
+    <string name="dialog_PositiveButton">若要查看</string>
+    <string name="dialog_NeutralButton">唔係</string>
+    <string name="dialog_NegativeButton">請求</string>
 </resources>
