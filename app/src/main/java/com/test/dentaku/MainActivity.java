@@ -9,7 +9,6 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -18,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,9 +51,10 @@ public class MainActivity extends Activity {
 
     int layout_id;
     RelativeLayout relative;
-    ConstraintLayout history;
+    RelativeLayout history;
+    ScrollView scrollView ;
     ImageButton button_close, button_history, backspace;
-    Button history_clear,request;
+    Button history_clear, request;
 
     TextView tv_history_tv1_0;
     TextView tv_history_tv1_1;
@@ -109,7 +110,7 @@ public class MainActivity extends Activity {
         //インタースティシャル
         //sample ID:ca-app-pub-3940256099942544/1033173712  Real ID:ca-app-pub-3891518799622736/2675857664
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3891518799622736/2675857664");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         mInterstitialAd.setAdListener(new AdListener() {
@@ -128,6 +129,7 @@ public class MainActivity extends Activity {
         /*縦画面固定*/
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        scrollView = findViewById(R.id.scrollView);
         relative = findViewById(R.id.relative);
         history = findViewById(R.id.history);//履歴表示のレイアウト
         tv_history_tv1_0 = findViewById(R.id.tv_history_tv1_0);//履歴表示のテキストビュー
@@ -209,8 +211,6 @@ public class MainActivity extends Activity {
         count_AdView = 0;
 
         oncreate = 1;
-
-
     }
 
     //アクティビティが前面に来るたびに処理
@@ -256,7 +256,7 @@ public class MainActivity extends Activity {
                     eT1.setText(button.getText());
                 } else {
                     //tv1が20桁以内なら
-                    if (tv1.getText().toString().length() < 20) {
+                    if (tv1.getText().toString().length() < 30) {
 
                         //eT1の後ろに文字を追加
                         eT1.append(button.getText());
@@ -555,7 +555,7 @@ public class MainActivity extends Activity {
                     /****************************計算処理*****************************************************/
 
                     /****************************計算履歴の表示***************************************/
-                    if (recentOperator == false) {//最近されたキーが"="ではないことを示す
+                    if (recentOperator == false) {//最近押されたキーが"="ではないことを示す
                         StringBuilder sb_tv1 = new StringBuilder(tv1.getText().toString());
                         StringBuilder sb_et1 = new StringBuilder(eT1.getText().toString());
 
@@ -651,20 +651,42 @@ public class MainActivity extends Activity {
                             case 19:
                                 tv_history_tv1_19.setText(sb_tv1);
                                 tv_history_eT1_19.setText(sb_et1);
+
+                                //計算履歴のMAX通知
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(
+                                        MainActivity.this);
+                                dialog.setTitle(R.string.dialog_Title2);
+                                dialog.setMessage(R.string.dialog_Message2);
+
+                                dialog.setPositiveButton("Delete",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                history_clear();
+                                            }
+                                        });
+
+                                dialog.setNegativeButton("No",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                            }
+                                        });
+                                dialog.show();
                                 break;
                         }
 
                         if (count_history < 19) {
                             count_history++;
                         }
-                    } else {
-                        recentOperator = false;     //最近入力されたキーが"="ではないことを示す
                     }
 
                     /************************計算履歴の表示*************************************/
 
                     recentOperator = true;//最近押されたキーが"="であることを記憶
 
+                }else {
+                    recentOperator = false;     //最近入力されたキーが"="ではないことを示す
                 }
                 isOperatorKeyPushed = true;//最近押されたキーがk計算キーであることを記憶
             } catch (Exception e) { //全ての例外に対応
@@ -709,9 +731,15 @@ public class MainActivity extends Activity {
         tv1.setText("0");
         eT1.setText("0");
 
+        button_visible();  //ボタンをクリック可
+
     }
 
     public void onclick_history_clear(View v) {
+        history_clear();
+    }
+
+    public void history_clear() {
         tv_history_tv1_0.setText("");
         tv_history_tv1_1.setText("");
         tv_history_tv1_2.setText("");
@@ -756,7 +784,12 @@ public class MainActivity extends Activity {
 
         count_history = 0;
 
-        button_visible();  //ボタンをクリック可
+        //スクロールビューを最上部へ
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
     }
 
     public void dot(View v) {
@@ -791,7 +824,7 @@ public class MainActivity extends Activity {
     }
 
 
-    public void puma(View v) {  /*****完成*****/
+    public void puma(View v) {
         /******************************例外処理******************************/
         try {
             if (recentOperator == true) {//最近押されたキーが"="だったら
@@ -936,7 +969,7 @@ public class MainActivity extends Activity {
                 Log.d("TAG", "The interstitial wasn't loaded yet.");
             }
         }
-        button_visible();
+        button_visible(); //ボタンクリック可
     }
 
     public void onclick_backspace(View v) {
@@ -983,6 +1016,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button_8).setEnabled(false);
         findViewById(R.id.button_9).setEnabled(false);
         findViewById(R.id.button_0).setEnabled(false);
+        findViewById(R.id.button_00).setEnabled(false);
 
         findViewById(R.id.button_add).setEnabled(false);
         findViewById(R.id.button_subtract).setEnabled(false);
@@ -993,6 +1027,9 @@ public class MainActivity extends Activity {
         findViewById(R.id.button_dot).setEnabled(false);
         findViewById(R.id.button_pa_sent).setEnabled(false);
         findViewById(R.id.button_puma).setEnabled(false);
+
+        findViewById(R.id.backspace).setEnabled(false);
+        findViewById(R.id.button_history).setEnabled(false);
     }
 
     public void button_visible() {       // その他のボタンを押せないようにする
@@ -1006,6 +1043,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button_8).setEnabled(true);
         findViewById(R.id.button_9).setEnabled(true);
         findViewById(R.id.button_0).setEnabled(true);
+        findViewById(R.id.button_00).setEnabled(true);
 
         findViewById(R.id.button_add).setEnabled(true);
         findViewById(R.id.button_subtract).setEnabled(true);
@@ -1016,6 +1054,9 @@ public class MainActivity extends Activity {
         findViewById(R.id.button_dot).setEnabled(true);
         findViewById(R.id.button_pa_sent).setEnabled(true);
         findViewById(R.id.button_puma).setEnabled(true);
+
+        findViewById(R.id.backspace).setEnabled(true);
+        findViewById(R.id.button_history).setEnabled(true);
     }
 
     /**
@@ -1068,19 +1109,18 @@ public class MainActivity extends Activity {
                 lp.width = (int) (target_button.getWidth() * multiple);
                 lp.height = (int) (target_button.getHeight() * multiple);
                 target_button.setLayoutParams(lp);
-
             }
         }
     }
 
-    public void onclick_request(View v){
+    public void onclick_request(View v) {
         Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
         Intent i = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(i);
     }
 
     SharedPreferences sp;
-    boolean k ;
+    boolean k;
 
     public void Preference() {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -1089,47 +1129,43 @@ public class MainActivity extends Activity {
         if (s > 31) {
             s = 0;
         }
-
         if (s < 31) {
             sp.edit().putInt("START", (s + 1)).commit();
             s = sp.getInt("START", 0);
-            Toast.makeText(this, String.valueOf(s), Toast.LENGTH_SHORT).show();
         }
 
-
         //10回目と30回目に表示
-        if ((s == 10 || s == 30) && k==false) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(
-                MainActivity.this);
-        dialog.setTitle(R.string.dialog_Title);
-        dialog.setMessage(R.string.dialog_Message);
-        dialog.setPositiveButton(R.string.dialog_PositiveButton,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                        k= true;
-                    }
-                });
-        dialog.setNegativeButton(R.string.dialog_NeutralButton,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-        dialog.setNeutralButton(R.string.dialog_NegativeButton,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
-                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(i);
-                    }
-                });
-
-        dialog.show();
+        if ((s == 10 || s == 30) && k == false) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(
+                    MainActivity.this);
+            dialog.setTitle(R.string.dialog_Title);
+            dialog.setMessage(R.string.dialog_Message);
+            dialog.setPositiveButton(R.string.dialog_PositiveButton,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
+                            Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(i);
+                            k = true;
+                        }
+                    });
+            dialog.setNegativeButton(R.string.dialog_NegativeButton,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+            dialog.setNeutralButton(R.string.dialog_NeutralButton,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
+                            Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(i);
+                        }
+                    });
+            dialog.show();
         }
     }
 }

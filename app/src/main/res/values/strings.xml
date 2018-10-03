@@ -4,6 +4,10 @@
     <string name="dialog_Title">Please cooperate with the review</string>
     <string name="dialog_Message">If you do not mind, please send me encouragement reviews / requests.</string>
     <string name="dialog_PositiveButton">to review</string>
-    <string name="dialog_NeutralButton">No</string>
-    <string name="dialog_NegativeButton">Request</string>
+    <string name="dialog_NeutralButton">Request</string>
+    <string name="dialog_NegativeButton">No</string>
+
+    //計算履歴MAX通知
+    <string name="dialog_Title2">Warning</string>
+    <string name="dialog_Message2">The calculation history that can be displayed is maximized.\nDelete history?</string>
 </resources>

@@ -3,6 +3,10 @@
     <string name="dialog_Title">レビューにご協力お願いします</string>
     <string name="dialog_Message">よろしければ励ましのレビュー・ご要望をお寄せください。</string>
     <string name="dialog_PositiveButton">レビューする</string>
-    <string name="dialog_NeutralButton">いいえ</string>
-    <string name="dialog_NegativeButton">要望</string>
+    <string name="dialog_NeutralButton">要望</string>
+    <string name="dialog_NegativeButton">いいえ</string>
+
+    //計算履歴MAX通知
+    <string name="dialog_Title2">警告</string>
+    <string name="dialog_Message2">表示できる計算履歴が最大になりました。\n履歴を削除しますか？</string>
 </resources>
