@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //タイトル
+    <string name="title">計算機</string>
+
     <string name="dialog_Title">請幫助我哋讀書</string>
     <string name="dialog_Message">如果你想評論嘅鼓勵同意見請。</string>
     <string name="dialog_PositiveButton">若要查看</string>
@@ -10,4 +13,6 @@
     <string name="dialog_Title2">警告</string>
     <string name="dialog_Message2">計算歷史記錄可以顯示為最大值。\n是否刪除歷史記錄?</string>
 
+    //menu
+    <string name="menu_item1">聯繫我們</string>
 </resources>

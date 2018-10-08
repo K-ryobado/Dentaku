@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //タイトル
+    <string name="title">計算機</string>
+
     <string name="dialog_Title">レビューにご協力お願いします</string>
     <string name="dialog_Message">よろしければ励ましのレビュー・ご要望をお寄せください。</string>
     <string name="dialog_PositiveButton">レビューする</string>
@@ -9,4 +12,7 @@
     //計算履歴MAX通知
     <string name="dialog_Title2">警告</string>
     <string name="dialog_Message2">表示できる計算履歴が最大になりました。\n履歴を削除しますか？</string>
+
+    //menu
+    <string name="menu_item1">お問い合わせ</string>
 </resources>

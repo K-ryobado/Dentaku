@@ -1,4 +1,6 @@
 <resources>
+    //タイトル
+    <string name="title">Calculator</string>
 
     //レビュー訴求ダイアログ
     <string name="dialog_Title">Please cooperate with the review</string>
@@ -10,4 +12,8 @@
     //計算履歴MAX通知
     <string name="dialog_Title2">Warning</string>
     <string name="dialog_Message2">The calculation history that can be displayed is maximized.\nDelete history?</string>
+
+    //menu
+    <string name="menu_item1">Contact Us</string>
+
 </resources>

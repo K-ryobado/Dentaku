@@ -6,10 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-        android:versionCode="6"
+        android:versionCode="14"
         android:allowBackup="true"
         android:icon="@drawable/icon_18_10_02"
-        android:label="Calculator"
+        android:label="@string/title"
+
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">

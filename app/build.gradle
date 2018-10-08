@@ -7,8 +7,8 @@ android {
         applicationId "com.test.dentaku"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 13
-        versionName "2.1.2"
+        versionCode 14
+        versionName "2.1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

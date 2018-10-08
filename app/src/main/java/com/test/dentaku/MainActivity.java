@@ -9,9 +9,13 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +36,7 @@ import com.google.android.gms.ads.AdView;
 
 import static java.lang.String.valueOf;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
 
     private InterstitialAd mInterstitialAd;//インタースティシャル
@@ -211,6 +215,28 @@ public class MainActivity extends Activity {
         count_AdView = 0;
 
         oncreate = 1;
+    }
+
+    //オプションメニューボタンを表示
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //main.xmlの内容を読み込む
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    //アイテムが選択されたときの処理
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1://お問い合わせ
+                Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSehNJrVHrJjumvkQE1QgIazUsK4IgxS_k5hBQzVnuNakRa0hg/viewform?usp=sf_link");
+                Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(i);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //アクティビティが前面に来るたびに処理

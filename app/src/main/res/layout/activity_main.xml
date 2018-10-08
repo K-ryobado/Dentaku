@@ -8,20 +8,11 @@
     android:background="#0d0c0c"
     tools:context=".MainActivity">
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3891518799622736/1151660728"></com.google.android.gms.ads.AdView>
-    <!-- Sample Banner ID:ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/1151660728-->
 
 
     <TextView
         android:id="@+id/tv1"
-        android:layout_below="@+id/adView"
+        android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="left"
@@ -39,7 +30,7 @@
         android:onClick="onclick_history"
         android:scaleType="fitXY"
         android:src="@drawable/ic_expand_more_black_24dp"
-        android:layout_below="@+id/adView"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true" />
 
     <ImageButton
@@ -91,14 +82,15 @@
         layout="@layout/ten_key"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/adView"
         android:layout_below="@id/line" />
 
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/adView">
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/adView">
 
         <RelativeLayout
             android:id="@+id/history"
@@ -467,4 +459,17 @@
             </LinearLayout>
         </RelativeLayout>
     </FrameLayout>
+
+    //バナー広告　下
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3891518799622736/4517614453"></com.google.android.gms.ads.AdView>
+    <!-- Sample Banner ID:ca-app-pub-3940256099942544/6300978111  Real ID: ca-app-pub-3891518799622736/4517614453-->
 </RelativeLayout>
+
+

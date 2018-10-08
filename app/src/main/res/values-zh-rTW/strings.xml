@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //タイトル
+    <string name="title">計算機</string>
+
     <string name="dialog_Title">評論合作拜託</string>
     <string name="dialog_Message">如果好請寄(移)鼓勵的評論·要求。</string>
     <string name="dialog_PositiveButton">評論</string>
@@ -9,4 +12,7 @@
     //計算履歴MAX通知
     <string name="dialog_Title2">警告</string>
     <string name="dialog_Message2">能表示的計算履歷最大變成了。\n刪除履歷嗎？</string>
+
+    //menu
+    <string name="menu_item1">詢問</string>
 </resources>
