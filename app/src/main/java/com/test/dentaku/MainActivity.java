@@ -1,6 +1,5 @@
 package com.test.dentaku;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +22,6 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.regex.Pattern;
@@ -235,6 +233,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(i);
                 return true;
+
+            case R.id.item2://評価する
+                Uri uri2 = Uri.parse("https://play.google.com/store/apps/details?id=com.test.dentaku");
+                Intent v = new Intent(Intent.ACTION_VIEW, uri2);
+                startActivity(v);
+                return true;
+
+
         }
         return super.onOptionsItemSelected(item);
     }

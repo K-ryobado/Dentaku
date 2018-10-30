@@ -60,15 +60,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv1"
+        android:layout_toLeftOf="@+id/tv_space"
         android:ellipsize="none"
         android:gravity="right"
         android:maxLength="12"
         android:singleLine="true"
         android:text="0"
-        android:layout_toLeftOf="@+id/tv_space"
         android:textColor="#f1eded"
-        android:textSize="45dp"
-        app:fontFamily="serif-monospace" />
+        android:textSize="45dp" />
 
     <View
         android:id="@+id/line"

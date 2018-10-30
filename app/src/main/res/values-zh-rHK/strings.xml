@@ -15,4 +15,5 @@
 
     //menu
     <string name="menu_item1">聯繫我們</string>
+    <string name="menu_item2">評估應用程序</string>
 </resources>

@@ -15,5 +15,6 @@
 
     //menu
     <string name="menu_item1">Contact Us</string>
+    <string name="menu_item2">Evaluate apps</string>
 
 </resources>

@@ -15,4 +15,5 @@
 
     //menu
     <string name="menu_item1">お問い合わせ</string>
+    <string name="menu_item2">アプリを評価する</string>
 </resources>
